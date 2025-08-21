@@ -13,7 +13,10 @@
     <div v-if="!isAuth" class="flex gap-2 items-center bg-blue-50 border border-blue-200 rounded-lg p-4">
       <input v-model="password" type="password" placeholder="Admin password"
              class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-      <button @click="doLogin" class="rounded-lg bg-blue-700 text-white px-4 py-2 font-semibold hover:bg-blue-800 transition">Login</button>
+      <button @click="doLogin" class="rounded-lg px-4 py-2 font-semibold transition text-white"
+        style="background: linear-gradient(90deg, #6DD47E 0%, #3EC6E0 100%); box-shadow: 0 2px 8px #b2f0e6;">
+        Login
+      </button>
     </div>
 
     <div v-else class="flex items-center gap-3 bg-green-50 border border-green-200 rounded-lg p-4">

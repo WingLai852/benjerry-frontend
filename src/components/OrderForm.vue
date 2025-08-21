@@ -96,9 +96,10 @@
 
     <button
       type="submit"
-      class="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 active:scale-[.99]"
+      class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-white font-bold transition-colors duration-200"
+      style="background: linear-gradient(90deg, #00B3E6 0%, #7ED957 100%); box-shadow: 0 2px 8px rgba(0,179,230,0.15);"
     >
-      Bestellen
+      🍦 Bestellen
     </button>
   </form>
 </template>
