@@ -1,8 +1,8 @@
 <template>
-  <section>
-    <h1>Stel je ijs samen 🍨</h1>
+  <section class="space-y-4">
+    <h1 class="text-2xl font-bold">Stel je ijs samen 🍨</h1>
     <OrderForm @submitted="onSubmitted" />
-    <div v-if="createdId" style="margin-top:12px;">
+    <div v-if="createdId" class="p-3 rounded-lg bg-green-50 border text-green-700">
       <strong>Bestelling geplaatst!</strong> ID: {{ createdId }}
     </div>
   </section>

@@ -1,39 +1,61 @@
 <template>
-  <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:100%;">
-    <thead>
-      <tr>
-        <th>ID</th><th>Klant</th><th>Adres</th><th>Item</th><th>Prijs</th><th>Status</th><th>Acties</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="o in items" :key="o._id">
-        <td style="max-width:220px; overflow:hidden; text-overflow:ellipsis;">{{ o._id }}</td>
-        <td>{{ o.customerName }}</td>
-        <td>{{ o.address }}</td>
-        <td>
-          <div v-for="(it, i) in o.items" :key="i">
-            {{ it.baseFlavor }} / {{ it.topping }} ({{ it.size }})
-          </div>
-        </td>
-        <td>€ {{ o.totalPrice }}</td>
-        <td>
-          <span v-if="!canEdit">{{ o.status }}</span>
-          <select v-else v-model="localStatus[o._id]" @change="emitUpdate(o._id)">
-            <option value="te_verwerken">te_verwerken</option>
-            <option value="verzonden">verzonden</option>
-            <option value="geannuleerd">geannuleerd</option>
-          </select>
-        </td>
-        <td>
-          <button v-if="canEdit" @click="$emit('delete-order', o._id)">Delete</button>
-        </td>
-      </tr>
-      <tr v-if="items.length===0">
-        <td colspan="7" style="text-align:center;">Geen bestellingen</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="overflow-x-auto border rounded-lg">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-gray-700">
+        <tr>
+          <th class="text-left p-3">ID</th>
+          <th class="text-left p-3">Klant</th>
+          <th class="text-left p-3">Adres</th>
+          <th class="text-left p-3">Item</th>
+          <th class="text-left p-3">Prijs</th>
+          <th class="text-left p-3">Status</th>
+          <th class="text-left p-3">Acties</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="o in items" :key="o._id" class="border-t">
+          <td class="p-3 max-w-[240px] truncate">{{ o._id }}</td>
+          <td class="p-3">{{ o.customerName }}</td>
+          <td class="p-3">{{ o.address }}</td>
+          <td class="p-3">
+            <div v-for="(it, i) in o.items" :key="i">
+              {{ it.baseFlavor }} / {{ it.topping }} ({{ it.size }})
+            </div>
+          </td>
+          <td class="p-3">€ {{ o.totalPrice }}</td>
+          <td class="p-3">
+            <span v-if="!canEdit" class="inline-flex rounded-full bg-gray-100 px-2 py-1 text-xs">
+              {{ o.status }}
+            </span>
+            <select
+              v-else
+              v-model="localStatus[o._id]"
+              @change="emitUpdate(o._id)"
+              class="rounded-lg border px-2 py-1 outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="te_verwerken">te_verwerken</option>
+              <option value="verzonden">verzonden</option>
+              <option value="geannuleerd">geannuleerd</option>
+            </select>
+          </td>
+          <td class="p-3">
+            <button
+              v-if="canEdit"
+              @click="$emit('delete-order', o._id)"
+              class="rounded-lg bg-red-600 text-white px-3 py-1 text-sm hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr v-if="items.length===0" class="border-t">
+          <td colspan="7" class="p-6 text-center text-gray-500">Geen bestellingen</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
+
 
 <script setup>
 import { reactive, watch } from "vue";

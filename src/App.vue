@@ -11,3 +11,14 @@
     <router-view />
   </main>
 </template>
+
+<style scoped>
+header {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  border-radius: 0 0 2rem 2rem;
+}
+main {
+  min-height: 60vh;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+}
+</style>
