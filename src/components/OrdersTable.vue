@@ -22,9 +22,16 @@
           <td class="p-3">{{ o.customerName }}</td>
           <td class="p-3">{{ o.address }}</td>
 
+          <!-- ✅ Item-kolom: toon alle bollen indien extraFlavors bestaat -->
           <td class="p-3">
             <div v-for="(it, i) in o.items" :key="i">
-              {{ it.baseFlavor }} / {{ it.topping }} ({{ it.size }})
+              <template v-if="Array.isArray(it.extraFlavors) && it.extraFlavors.some(Boolean)">
+                {{ displayFlavors(it.extraFlavors) }}
+              </template>
+              <template v-else>
+                {{ it.baseFlavor || "—" }}
+              </template>
+              / {{ it.topping || "geen" }} ({{ it.size || "medium" }})
             </div>
           </td>
 
@@ -32,7 +39,10 @@
 
           <td class="p-3">
             <!-- Alleen lezen -->
-            <span v-if="!canEdit" :class="['inline-flex rounded-full px-2 py-1 text-xs font-medium', statusClass(o.status)]">
+            <span
+              v-if="!canEdit"
+              :class="['inline-flex rounded-full px-2 py-1 text-xs font-medium', statusClass(o.status)]"
+            >
               {{ o.status }}
             </span>
 
@@ -107,6 +117,12 @@ function statusClass(status) {
 function shortId(id = "") {
   if (id.length <= 12) return id;
   return `${id.slice(0, 6)}…${id.slice(-4)}`;
+}
+
+// ✅ helper: toon meerdere smaken netjes
+function displayFlavors(arr = []) {
+  const list = arr.filter(Boolean);
+  return list.length ? list.join(" + ") : "—";
 }
 
 function emitUpdate(id) {
