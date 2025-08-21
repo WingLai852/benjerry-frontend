@@ -5,7 +5,7 @@
       <input 
         v-model="customerName" 
         required 
-        class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-green-500" 
+        class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" 
         placeholder="Voornaam Achternaam" 
       />
     </div>
@@ -15,7 +15,7 @@
       <input 
         v-model="address" 
         required 
-        class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-green-500" 
+        class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" 
         placeholder="Straat 1, 1000 Brussel" 
       />
     </div>
@@ -29,7 +29,7 @@
           <select 
             v-model="baseFlavor" 
             required 
-            class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
+            class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">-- kies --</option>
             <option>vanilla</option>
@@ -43,7 +43,7 @@
           <select 
             v-model="topping" 
             required 
-            class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
+            class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">-- kies --</option>
             <option>oreo</option>
@@ -56,7 +56,7 @@
           <label class="block text-sm font-medium mb-1">Grootte</label>
           <select 
             v-model="size" 
-            class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
+            class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option>small</option>
             <option selected>medium</option>
@@ -74,13 +74,13 @@
         min="0" 
         v-model.number="totalPrice" 
         required 
-        class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-green-500" 
+        class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" 
       />
     </div>
 
     <button 
       type="submit" 
-      class="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 active:scale-[.99]"
+      class="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-blue-600 font-medium hover:bg-green-700 active:scale-[.99]"
     >
       Bestellen
     </button>

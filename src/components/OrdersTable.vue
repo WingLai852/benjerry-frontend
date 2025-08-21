@@ -42,7 +42,7 @@
             <button
               v-if="canEdit"
               @click="$emit('delete-order', o._id)"
-              class="rounded-lg bg-red-600 text-white px-3 py-1 text-sm hover:bg-red-700"
+              class="rounded-lg bg-red-600 text-blue-600 px-3 py-1 text-sm hover:bg-red-700"
             >
               Delete
             </button>

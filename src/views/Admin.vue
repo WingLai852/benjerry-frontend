@@ -5,10 +5,10 @@
     <div v-if="!isAuth" class="flex gap-2">
       <input v-model="password" type="password" placeholder="Admin password"
              class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" />
-      <button @click="doLogin" class="rounded-lg bg-blue-600 text-white px-4 py-2 hover:bg-blue-700">Login</button>
+      <button @click="doLogin" class="rounded-lg bg-blue-600 text-blue-600 px-4 py-2 hover:bg-blue-700">Login</button>
     </div>
     <div v-else class="flex items-center gap-2">
-      <span class="inline-flex items-center rounded-full bg-green-100 text-green-800 px-2 py-1 text-xs">Ingelogd</span>
+      <span class="inline-flex items-center rounded-full bg-green-100 text-blue-600 px-2 py-1 text-xs">Ingelogd</span>
       <button @click="logout" class="rounded-lg border px-3 py-2 hover:bg-gray-50">Logout</button>
     </div>
 
