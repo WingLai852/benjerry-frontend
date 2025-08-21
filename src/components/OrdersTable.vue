@@ -1,41 +1,45 @@
 <template>
-  <div class="overflow-x-auto border rounded-lg">
-    <table class="w-full text-sm">
-      <thead class="bg-gray-50 text-gray-700">
+  <div class="overflow-x-auto border rounded-lg shadow-lg bg-gradient-to-br from-blue-50 via-teal-50 to-yellow-50">
+    <table class="w-full text-sm font-sans">
+      <thead class="bg-gradient-to-r from-blue-200 via-teal-200 to-yellow-200 text-blue-900">
         <tr>
-          <th class="text-left p-3">ID</th>
-          <th class="text-left p-3">Klant</th>
-          <th class="text-left p-3">Adres</th>
-          <th class="text-left p-3">Item</th>
-          <th class="text-left p-3">Prijs</th>
-          <th class="text-left p-3">Status</th>
-          <th class="text-left p-3">Acties</th>
+          <th class="text-left p-3">🍦 ID</th>
+          <th class="text-left p-3">🧑 Klant</th>
+          <th class="text-left p-3">🏠 Adres</th>
+          <th class="text-left p-3">🍨 Item</th>
+          <th class="text-left p-3">💶 Prijs</th>
+          <th class="text-left p-3">📦 Status</th>
+          <th class="text-left p-3">⚡ Acties</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="o in items" :key="o._id" class="border-t">
+        <tr v-for="o in items" :key="o._id" class="border-t hover:bg-yellow-50 transition">
           <!-- Kort ID met volledige ID als tooltip -->
-          <td class="p-3 max-w-[240px] truncate">
+          <td class="p-3 max-w-[240px] truncate font-mono text-blue-700">
             <span :title="o._id">{{ shortId(o._id) }}</span>
           </td>
 
-          <td class="p-3">{{ o.customerName }}</td>
-          <td class="p-3">{{ o.address }}</td>
+          <td class="p-3 font-semibold text-teal-800">{{ o.customerName }}</td>
+          <td class="p-3 text-teal-700">{{ o.address }}</td>
 
-          <!-- ✅ Item-kolom: toon alle bollen indien extraFlavors bestaat -->
+          <!-- Item-kolom: toon alle bollen indien extraFlavors bestaat -->
           <td class="p-3">
-            <div v-for="(it, i) in o.items" :key="i">
-              <template v-if="Array.isArray(it.extraFlavors) && it.extraFlavors.some(Boolean)">
-                {{ displayFlavors(it.extraFlavors) }}
-              </template>
-              <template v-else>
-                {{ it.baseFlavor || "—" }}
-              </template>
-              / {{ it.topping || "geen" }} ({{ it.size || "medium" }})
+            <div v-for="(it, i) in o.items" :key="i" class="flex items-center gap-2">
+              <span class="inline-block">
+                <template v-if="Array.isArray(it.extraFlavors) && it.extraFlavors.some(Boolean)">
+                  {{ displayFlavors(it.extraFlavors) }}
+                </template>
+                <template v-else>
+                  {{ it.baseFlavor || "—" }}
+                </template>
+              </span>
+              <span class="text-yellow-700">/</span>
+              <span class="italic">{{ it.topping || "geen" }}</span>
+              <span class="ml-1 text-xs bg-blue-100 text-blue-700 rounded px-2 py-0.5">{{ it.size || "medium" }}</span>
             </div>
           </td>
 
-          <td class="p-3">€ {{ o.totalPrice }}</td>
+          <td class="p-3 font-bold text-yellow-800">€ {{ o.totalPrice }}</td>
 
           <td class="p-3">
             <!-- Alleen lezen -->
@@ -51,7 +55,7 @@
               v-else
               v-model="localStatus[o._id]"
               @change="emitUpdate(o._id)"
-              class="rounded-lg border px-2 py-1 outline-none focus:ring-2 focus:ring-blue-500 transition"
+              class="rounded-lg border px-2 py-1 outline-none focus:ring-2 focus:ring-blue-400 transition bg-white"
             >
               <option value="te_verwerken">te_verwerken</option>
               <option value="verzonden">verzonden</option>
@@ -63,9 +67,9 @@
             <button
               v-if="canEdit"
               @click="$emit('delete-order', o._id)"
-              class="rounded-lg bg-red-500 text-white px-3 py-1 text-sm
-                     hover:bg-red-700 active:scale-95 transition-all
-                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+              class="rounded-lg bg-gradient-to-r from-red-400 to-red-600 text-white px-3 py-1 text-sm
+                     hover:from-red-500 hover:to-red-700 active:scale-95 transition-all
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 shadow"
             >
               Delete
             </button>
@@ -73,7 +77,7 @@
         </tr>
 
         <tr v-if="items.length===0" class="border-t">
-          <td colspan="7" class="p-6 text-center text-gray-500">Geen bestellingen</td>
+          <td colspan="7" class="p-6 text-center text-gray-500">🍦 Geen bestellingen</td>
         </tr>
       </tbody>
     </table>

@@ -1,28 +1,33 @@
 <template>
-  <section class="space-y-4">
-    <h1 class="text-2xl font-bold">Admin — Bestellingen</h1>
+  <section class="space-y-6 max-w-3xl mx-auto py-8">
+    <h1 class="text-3xl font-extrabold text-blue-900 flex items-center gap-2">
+      <span class="i-twemoji-ice-cream mr-2 text-2xl"></span>
+      Admin — Bestellingen
+    </h1>
 
     <!-- Error banner -->
     <div v-if="errorMsg" class="rounded-lg border border-red-200 bg-red-50 text-red-700 p-3">
       {{ errorMsg }}
     </div>
 
-    <div v-if="!isAuth" class="flex gap-2">
+    <div v-if="!isAuth" class="flex gap-2 items-center bg-blue-50 border border-blue-200 rounded-lg p-4">
       <input v-model="password" type="password" placeholder="Admin password"
-             class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500" />
-      <button @click="doLogin" class="rounded-lg bg-blue-600 text-white px-4 py-2 hover:bg-blue-700">Login</button>
+             class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      <button @click="doLogin" class="rounded-lg bg-blue-700 text-white px-4 py-2 font-semibold hover:bg-blue-800 transition">Login</button>
     </div>
 
-    <div v-else class="flex items-center gap-2">
-      <span class="inline-flex items-center rounded-full bg-green-100 text-green-800 px-2 py-1 text-xs">Ingelogd</span>
-      <button @click="logout" class="rounded-lg border px-3 py-2 hover:bg-gray-50">Logout</button>
+    <div v-else class="flex items-center gap-3 bg-green-50 border border-green-200 rounded-lg p-4">
+      <span class="inline-flex items-center rounded-full bg-green-200 text-green-900 px-3 py-1 text-xs font-semibold">
+        <span class="i-twemoji-ice-cream mr-1"></span> Ingelogd als admin
+      </span>
+      <button @click="logout" class="rounded-lg border px-3 py-2 hover:bg-gray-50 font-medium">Logout</button>
     </div>
 
     <!-- Filters -->
-    <div class="flex flex-wrap gap-4 items-center">
-      <label class="text-sm">
+    <div class="flex flex-wrap gap-6 items-center bg-gray-50 border border-gray-200 rounded-lg p-4">
+      <label class="text-sm font-medium">
         <span class="block text-gray-600 mb-1">Status filter</span>
-        <select :disabled="loading || mutating" v-model="statusFilter" @change="refresh" class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
+        <select :disabled="loading || mutating" v-model="statusFilter" @change="refresh" class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="">Alle</option>
           <option value="te_verwerken">te_verwerken</option>
           <option value="verzonden">verzonden</option>
@@ -30,9 +35,9 @@
         </select>
       </label>
 
-      <label class="text-sm">
+      <label class="text-sm font-medium">
         <span class="block text-gray-600 mb-1">Per pagina</span>
-        <select :disabled="loading || mutating" v-model.number="limit" @change="goPage(1)" class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
+        <select :disabled="loading || mutating" v-model.number="limit" @change="goPage(1)" class="rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option :value="5">5</option>
           <option :value="10">10</option>
           <option :value="20">20</option>
@@ -41,7 +46,10 @@
     </div>
 
     <!-- Lade-indicator -->
-    <div v-if="loading" class="text-sm text-gray-500">Laden…</div>
+    <div v-if="loading" class="text-sm text-blue-700 flex items-center gap-2">
+      <span class="i-twemoji-ice-cream animate-bounce"></span>
+      Laden…
+    </div>
 
     <!-- Orders tabel -->
     <OrdersTable
@@ -52,10 +60,10 @@
     />
 
     <!-- Paginatie -->
-    <div class="flex items-center gap-3">
-      <button :disabled="page<=1 || loading || mutating" @click="goPage(page-1)" class="rounded-lg border px-3 py-2 disabled:opacity-50">Vorige</button>
-      <span class="text-sm text-gray-600">Pagina {{ page }} / {{ orders.totalPages || 1 }}</span>
-      <button :disabled="page>=orders.totalPages || loading || mutating" @click="goPage(page+1)" class="rounded-lg border px-3 py-2 disabled:opacity-50">Volgende</button>
+    <div class="flex items-center gap-4 justify-center">
+      <button :disabled="page<=1 || loading || mutating" @click="goPage(page-1)" class="rounded-lg border px-3 py-2 disabled:opacity-50 bg-white font-medium">Vorige</button>
+      <span class="text-sm text-gray-700 font-semibold">Pagina {{ page }} / {{ orders.totalPages || 1 }}</span>
+      <button :disabled="page>=orders.totalPages || loading || mutating" @click="goPage(page+1)" class="rounded-lg border px-3 py-2 disabled:opacity-50 bg-white font-medium">Volgende</button>
     </div>
   </section>
 </template>
