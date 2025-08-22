@@ -123,7 +123,6 @@ function shortId(id = "") {
   return `${id.slice(0, 6)}…${id.slice(-4)}`;
 }
 
-// ✅ helper: toon meerdere smaken netjes
 function displayFlavors(arr = []) {
   const list = arr.filter(Boolean);
   return list.length ? list.join(" + ") : "—";

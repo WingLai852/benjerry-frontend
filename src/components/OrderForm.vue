@@ -26,7 +26,7 @@
       <!-- Drie smaken: top / midden / onder -->
       <div class="grid sm:grid-cols-3 gap-4 mt-2">
         <div>
-          <label class="block text-sm font-medium mb-1">Onder bol</label>
+          <label class="block text-sm font-medium mb-1">Onderste bol</label>
           <select v-model="flTop" class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
             <option value="">-- kies --</option>
             <option>vanilla</option>
@@ -35,7 +35,7 @@
           </select>
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1">Boven bol</label>
+          <label class="block text-sm font-medium mb-1">Bovenste bol</label>
           <select v-model="flMid" class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
             <option value="">-- kies --</option>
             <option>vanilla</option>
