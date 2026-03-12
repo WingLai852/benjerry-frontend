@@ -61,7 +61,7 @@
             v-model="topping"
             class="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="">-- geen --</option>
+            <option value="none">-- geen --</option>
             <option>oreo</option>
             <option>caramel</option>
             <option>sprinkles</option>
@@ -118,7 +118,7 @@ const flTop = ref("");
 const flMid = ref("");
 const flBot = ref("");
 
-const topping = ref("");
+const topping = ref("none");
 const size = ref("medium");
 const totalPrice = ref(8.5);
 
